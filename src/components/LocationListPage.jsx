@@ -7,10 +7,14 @@ export default function LocationListPage({ setLocation }) {
   useEffect(() => {
     let raceConditionHandler = true;
     const fetchData = async () => {
-      const response = await fetch(`https://pokeapi.co/api/v2/location`);
-      const pokeLocations = await response.json();
+      const detailedLocations = [];
+      for (let i = 1; i <= 20; i++) {
+        const response = await fetch(`https://pokeapi.co/api/v2/location/${i}`);
+        const pokeLocation = await response.json();
+        detailedLocations.push(pokeLocation);
+      }
       if (raceConditionHandler) {
-        setLocations(pokeLocations.results);
+        setLocations(detailedLocations);
       }
     };
     fetchData();
@@ -21,10 +25,13 @@ export default function LocationListPage({ setLocation }) {
   }, []);
 
   const locationList = locations.map((location) => {
+    const englishNameObj = location.names.find(
+      (name) => name.language.name === "en"
+    );
     return (
       <div key={location.name} className="location-holder">
         <button className="btn-location" onClick={() => setLocation(location)}>
-          {location.name}
+          {englishNameObj.name}
         </button>
       </div>
     );

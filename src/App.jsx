@@ -10,7 +10,6 @@ function App() {
       {location ? 
       <h1>{location.name}</h1> :
       <>
-      <h2>Test</h2>
       <LocationListPage setLocation={setLocation} /> 
       </>
       }
