@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import LocationListPage from './components/LocationListPage';
+import Pokemon from './components/Pokemon';
 import './App.css'
 
 function App() {
@@ -8,7 +9,7 @@ function App() {
   return (
     <>
       {location ? 
-      <h1>{location.name}</h1> :
+      <Pokemon location={location} /> :
       <>
       <LocationListPage setLocation={setLocation} /> 
       </>

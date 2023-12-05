@@ -1,13 +1,14 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 
-export default function Location(props) {
-    const locationId = props.id;
+export default function Pokemon({location}) {
+    
     const [pokemon, setPokemons] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetch(`https://pokeapi.co/api/v2/location-area/${locationId}/`);
+                const data = await fetch(`https://pokeapi.co/api/v2/location-area/${location.id}/`);
                 const json = await data.json();
 
                 const pokemonList = await Promise.all(
@@ -25,7 +26,7 @@ export default function Location(props) {
         };
 
         fetchData();
-    }, [locationId]);
+    }, [location.id]);
 
     if (pokemon.length === 0) {
         return <div>Loading...</div>;
