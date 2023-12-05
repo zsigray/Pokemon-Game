@@ -4,11 +4,10 @@ import { useState, useEffect } from 'react';
 export default function Pokemon({location}) {
     
     const [pokemon, setPokemons] = useState([]);
-
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await fetch(`https://pokeapi.co/api/v2/location-area/${location.id}/`);
+                const data = await fetch(location.areas[randomIntFromInterval(0, location.areas.length)-1].url);
                 const json = await data.json();
 
                 const pokemonList = await Promise.all(
@@ -26,10 +25,10 @@ export default function Pokemon({location}) {
         };
 
         fetchData();
-    }, [location.id]);
+    }, []);
 
     if (pokemon.length === 0) {
-        return <div>Loading...</div>;
+        return <div>This location doesn't seem to have any pokémon</div> 
     }
     else {
         const randomPokemon = pokemon[randomIntFromInterval(0, pokemon.length-1)];
