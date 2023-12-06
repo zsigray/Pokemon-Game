@@ -98,7 +98,7 @@ export default function Pokemon({ location, onBackButtonClick }) {
   } else {
     return (
       <>
-        <PokemonChooser />
+        <PokemonChooser pokemon={pokemon} onBattleEnd={setLocation} />
         <div className="enemySide">
           <div className={getTypeClassNameOrImg(true)}>
             <table className='nameheaders'>
