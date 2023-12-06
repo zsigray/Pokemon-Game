@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import PokemonChooser from './PokemonChooser';
 
-export default function Pokemon({ location, /* setLocation, */ onBackButtonClick }) {
+export default function Pokemon({ location, setLocation, onBackButtonClick }) {
   const [pokemon, setPokemon] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -46,10 +46,10 @@ export default function Pokemon({ location, /* setLocation, */ onBackButtonClick
   } else {
     return (
       <>
-        <PokemonChooser />
+        <PokemonChooser pokemon={pokemon} onBattleEnd={setLocation} />
         <div className="enemySide">
         <h1>{pokemon.name}</h1>
-        <img src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
+        <img className='fighter' src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
         <h3>
           ❤️ {pokemon.stats[0].base_stat} 🗡️ {pokemon.stats[1].base_stat} 🛡️ {pokemon.stats[3].base_stat}
         </h3>
