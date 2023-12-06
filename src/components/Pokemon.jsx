@@ -1,48 +1,59 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
 
-export default function Pokemon({location}) {
-    
-    const [pokemon, setPokemons] = useState([]);
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const data = await fetch(location.areas[randomIntFromInterval(0, location.areas.length)-1].url);
-                const json = await data.json();
+export default function Pokemon({ location, setLocation, onBackButtonClick }) {
+  const [pokemon, setPokemon] = useState(null);
+  const [loaded, setLoaded] = useState(false);
 
-                const pokemonList = await Promise.all(
-                    json.pokemon_encounters.map(async encounter => {
-                        const pokemonData = await fetch(encounter.pokemon.url);
-                        const pokemonJson = await pokemonData.json();
-                        return pokemonJson;
-                    })
-                );
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        if (location.areas.length === 0) {
+          setLoaded(true)
+          return
+        }
+        const areaIndex = randomIntFromInterval(0, location.areas.length - 1);
+        const areaUrl = location.areas[areaIndex].url;
+        const areaData = await fetch(areaUrl);
+        const areaJson = await areaData.json();
 
-                setPokemons(pokemonList);
-            } catch (error) {
-                console.error('Error fetching data:', error.message);
-            }
-        };
+        const pokemonIndex = randomIntFromInterval(0, areaJson.pokemon_encounters.length - 1);
+        const randomPokemon = areaJson.pokemon_encounters[pokemonIndex];
 
-        fetchData();
-    }, []);
+        const pokemonData = await fetch(randomPokemon.pokemon.url);
+        const pokemonJson = await pokemonData.json();
 
-    if (pokemon.length === 0) {
-        return <div>This location doesn't seem to have any pokémon</div> 
-    }
-    else {
-        const randomPokemon = pokemon[randomIntFromInterval(0, pokemon.length-1)];
-        return (
-            <>
-                <h1>{randomPokemon.name}</h1>
-                <img src={randomPokemon.sprites.other['official-artwork'].front_shiny} alt={randomPokemon.name} />
-                <h3>❤️ {randomPokemon.stats[0].base_stat} 🗡️ {randomPokemon.stats[1].base_stat} 🛡️ {randomPokemon.stats[3].base_stat}</h3>
-            </>
-        );
-    }
+        setPokemon(pokemonJson);
+        setLoaded(true);
+      } catch (error) {
+        console.error(error)
+      }
+    };
 
+    fetchData();
+  }, [location.areas]);
+
+  if (loaded && !pokemon) {
+    return (
+    <div>
+      <h1>This location doesn't seem to have any pokemon</h1>
+      <button onClick={onBackButtonClick}>Back</button>
+    </div>);
+  } else if (!loaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <>
+        <h1>{pokemon.name}</h1>
+        <img src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
+        <h3>
+          ❤️ {pokemon.stats[0].base_stat} 🗡️ {pokemon.stats[1].base_stat} 🛡️ {pokemon.stats[3].base_stat}
+        </h3>
+      </>
+    );
+  }
 }
 
-function randomIntFromInterval(min, max) { 
-    return Math.floor(Math.random() * (max - min + 1) + min)
+function randomIntFromInterval(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
