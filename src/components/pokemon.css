@@ -1,0 +1,337 @@
+div.card-background-water {
+  background: linear-gradient(
+    to bottom right,
+    #a3f7fd,
+    #6fd6e6,
+    #4dbbd3,
+    #2b9db8,
+    #4dbbd3,
+    #6fd6e6
+);
+}
+div.card-background-fire {
+  background: linear-gradient(
+    to bottom right,
+    #ffbfba,
+    #ff978f,
+    #ff756b,
+    #ff594c,
+    #ff756b,
+    #ff978f
+  );
+}
+div.card-background-grass {
+  background: linear-gradient(
+    to bottom right,
+    #b5df88,
+    #8cc070,
+    #5fab5e,
+    #398b4c,
+    #5fab5e,
+    #8cc070
+);
+}
+div.card-background-electric {
+  background: linear-gradient(
+    to bottom right,
+    #f8f89e,
+    #f2f55e,
+    #e6eb57,
+    #cadf52,
+    #e6eb57,
+    #f2f55e
+);
+}
+div.card-background-fairy {
+  background: linear-gradient(
+    to bottom right,
+    #f8d5f2,
+    #e3a9e5,
+    #c980d1,
+    #b65ebf,
+    #c980d1,
+    #e3a9e5
+  );
+}
+div.card-background-rock {
+  background: linear-gradient(
+    to bottom right,
+    #d1ccc0,
+    #b2ada0,
+    #938e77,
+    #706d5e,
+    #938e77,
+    #b2ada0
+  );
+}
+div.card-background-bug {
+  background: linear-gradient(
+    to bottom right,
+    #c6e377,
+    #a9d271,
+    #8dbb6c,
+    #73a864,
+    #8dbb6c,
+    #a9d271
+);
+}
+div.card-background-ghost {
+  background: linear-gradient(
+    to bottom right,
+    #c2b6b1,
+    #a2928a,
+    #7d6f6a,
+    #5b4f4b,
+    #7d6f6a,
+    #a2928a
+);
+}
+div.card-background-normal {
+  background: linear-gradient(
+    to bottom right,
+    #eaeaea,
+    #cfcfcf,
+    #b5b5b5,
+    #9c9c9c,
+    #b5b5b5,
+    #cfcfcf
+);
+}
+div.card-background-fighting {
+  background: linear-gradient(
+    to bottom right,
+    #e4a382,
+    #cf7d61,
+    #bb5941,
+    #a6422a,
+    #bb5941,
+    #cf7d61
+);
+}
+div.card-background-psychic {
+  background: linear-gradient(
+    to bottom right,
+    #c7b7ff,
+    #a391f7,
+    #816fd3,
+    #5f4faa,
+    #816fd3,
+    #a391f7
+);
+}
+div.card-background-steel {
+  background: linear-gradient(
+    to bottom right,
+    #b4c3cb,
+    #95a6b0,
+    #7a8f97,
+    #5e7681,
+    #7a8f97,
+    #95a6b0
+);
+}
+div.card-background-dark {
+  background: linear-gradient(
+    to bottom right,
+    #8e8e8e,
+    #6c6c6c,
+    #4a4a4a,
+    #303030,
+    #4a4a4a,
+    #6c6c6c
+);
+}
+div.card-background-dragon {
+  background: linear-gradient(
+    to bottom right,
+    #b3a8ff,
+    #9381ff,
+    #715dff,
+    #5236ff,
+    #715dff,
+    #9381ff
+);
+}
+div.card-background-flying {
+  background: linear-gradient(
+    to bottom right,
+    #a0d8f1,
+    #6cb7db,
+    #3a97c5,
+    #0077af,
+    #3a97c5,
+    #6cb7db
+);
+}
+div.card-background-ground {
+  background: linear-gradient(
+    to bottom right,
+    #d3bca3,
+    #b1947a,
+    #8f6a55,
+    #72482e,
+    #8f6a55,
+    #b1947a
+);
+}
+div.card-background-poison {
+  background: linear-gradient(
+    to bottom right,
+    #bbaed2,
+    #9f8ebd,
+    #835ea9,
+    #684897,
+    #835ea9,
+    #9f8ebd
+);
+}
+div.card-background-ice {
+  background: linear-gradient(
+    to bottom right,
+    #b3e0ff,
+    #8cc9f7,
+    #66b2ef,
+    #339be6,
+    #66b2ef,
+    #8cc9f7
+);
+}
+div.card-background-gray {
+  background-color: gray;
+}
+
+div {
+  font-family: sans-serif;
+}
+
+td.basic {
+  text-align: left;
+  font-weight: bold;
+  font-size: 11px;
+  margin: 0px;
+  padding: 0px;
+  width: 100%;
+}
+
+td.pokemon-name {
+  text-align: left;
+  font-weight: bold;
+  font-size: 18px;
+  margin: 0px;
+  padding: 0px;
+  text-transform: capitalize;
+}
+
+td.pokemon-hp {
+  color: crimson;
+  font-size: 20px;
+  text-align: right;
+  font-weight: bold;
+  width: 20%;
+}
+
+td.pokemon-type-icon {
+  font-size: 20px;
+  text-align: center;
+  width: 5%;
+}
+
+p.description {
+  padding: 2px 0px 0px 0px;
+  margin: 0px 0px 5px 0px;
+  background: linear-gradient(to right, goldenrod, yellow, goldenrod);
+  font-size: 11px;
+  font-family: sans-serif;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+}
+
+span.labeltext {
+  font-size: 11px;
+}
+
+td.energy {
+  width: 18%;
+  font-size: 20px;
+  text-align: center;
+}
+
+td.damage {
+  font-weight: bold;
+  text-align: right;
+}
+
+table.costs {
+  font-size: 11px;
+  text-align: center;
+  width: 100%;
+}
+
+tr.costheaders {
+  font-weight: bold;
+}
+
+tr.costicons {
+  font-size: 20px;
+}
+
+table.nameheaders {
+  width: 100%;
+}
+
+table.stats {
+  width: 100%;
+  text-align: center;
+}
+
+p.bottomtext {
+  font-size: 7px;
+  text-align: center;
+}
+
+p.italicize {
+  font-style: italic;
+  font-weight: bold;
+  font-size: 11px;
+  border: 3px solid gold;
+  border-radius: 6px;
+  margin: 0px;
+  padding: 5px;
+  text-align: center;
+}
+
+span.label {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+div.nameimageinfo {
+  width: 310px;
+  height: 500px;
+  padding: 10px;
+  border: 10px solid gold;
+  border-radius: 20px;
+  color: #000;
+}
+
+img.headshot {
+  padding: 0px;
+  margin: 0px;
+  border: 5px yellow outset;
+  box-shadow: 3px 3px 10px #000;
+  width: 300px;
+  height: 200px;
+  background-image: url("https://cdn.discordapp.com/attachments/835821286205947924/1181914023923556432/background_prairie_pokemon_screencapture_by_nemotrex_de8nlib-fullview.png");
+  background-size: cover;
+}
+
+.infoonly {
+  padding-bottom: 1vh;
+}
