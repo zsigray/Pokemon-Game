@@ -1,5 +1,7 @@
+
 import { useState, useEffect } from 'react';
 import './pokemon.css';
+import PokemonChooser from './PokemonChooser';
 
 export default function Pokemon({ location, onBackButtonClick }) {
   const [pokemon, setPokemon] = useState(null);
@@ -87,45 +89,50 @@ export default function Pokemon({ location, onBackButtonClick }) {
 
   if (loaded && !pokemon) {
     return (
-      <div>
-        <h1>This location doesn't seem to have any pokemon</h1>
-        <button onClick={onBackButtonClick}>Back</button>
-      </div>);
+    <div>
+      <h1>This location doesn't seem to have any pokemon 😢</h1>
+      <button onClick={onBackButtonClick}>Back</button>
+    </div>);
   } else if (!loaded) {
     return <div>Loading...</div>;
   } else {
     return (
-      <div className={getTypeClassNameOrImg(true)}>
-        <table className='nameheaders'>
-          <tr>
-            <td className='basic' colSpan={3}>Basic Pokemon</td>
-          </tr>
-          <tr>
-            <td className='pokemon-name'>{pokemon.name}</td>
-            <td className='pokemon-hp'>HP{pokemon.stats[0].base_stat}</td>
-            <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false)} alt="" width={30} height={30} /></td>
-          </tr>
-        </table>
-        <img className='headshot' src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
-        <p className='description'>{pokemonData.genera[7].genus}. Length: {pokemon.height * 10}CM Weight: {pokemon.weight / 10}KG</p>
-        <div className='infoonly'>
-          <table className='stats'>
-            <tr>
-              <td><span className='label'>Attack</span> <span className='labeltext'> </span></td>
-              <td className='damage'>{pokemon.stats[1].base_stat}</td>
-            </tr>
-          </table>
-          <hr />
-          <table className='stats'>
-            <tr>
-              <td><span className='label'>Defense</span> <span className='labeltext'> </span></td>
-              <td className='damage'>{pokemon.stats[3].base_stat}</td>
-            </tr>
-          </table>
+      <>
+        <PokemonChooser />
+        <div className="enemySide">
+          <div className={getTypeClassNameOrImg(true)}>
+            <table className='nameheaders'>
+              <tr>
+                <td className='basic' colSpan={3}>Basic Pokemon</td>
+              </tr>
+              <tr>
+                <td className='pokemon-name'>{pokemon.name}</td>
+                <td className='pokemon-hp'>HP{pokemon.stats[0].base_stat}</td>
+                <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false)} alt="" width={30} height={30} /></td>
+              </tr>
+            </table>
+            <img className='headshot' src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
+            <p className='description'>{pokemonData.genera[7].genus}. Length: {pokemon.height * 10}CM Weight: {pokemon.weight / 10}KG</p>
+            <div className='infoonly'>
+              <table className='stats'>
+                <tr>
+                  <td><span className='label'>Attack</span> <span className='labeltext'> </span></td>
+                  <td className='damage'>{pokemon.stats[1].base_stat}</td>
+                </tr>
+              </table>
+              <hr />
+              <table className='stats'>
+                <tr>
+                  <td><span className='label'>Defense</span> <span className='labeltext'> </span></td>
+                  <td className='damage'>{pokemon.stats[3].base_stat}</td>
+                </tr>
+              </table>
+            </div>
+            <p className='italicize'>{pokemonData.flavor_text_entries[0].flavor_text}</p>
+            <p className='bottomtext'><strong>Illus. Mitsuhiro Arita</strong>  C 1995, 96, 98 Nintendo Creatures, GAMEFREAK C 1999 Wizards.  <strong>58/102 o</strong></p>
+          </div>
         </div>
-        <p className='italicize'>{pokemonData.flavor_text_entries[0].flavor_text}</p>
-        <p className='bottomtext'><strong>Illus. Mitsuhiro Arita</strong>  C 1995, 96, 98 Nintendo Creatures, GAMEFREAK C 1999 Wizards.  <strong>58/102 o</strong></p>
-      </div>
+      </>
     );
   }
 }
