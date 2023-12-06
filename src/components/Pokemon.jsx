@@ -1,7 +1,9 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from 'react';
+import PokemonChooser from './PokemonChooser';
 
-export default function Pokemon({ location, setLocation, onBackButtonClick }) {
+export default function Pokemon({ location, /* setLocation, */ onBackButtonClick }) {
   const [pokemon, setPokemon] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
@@ -36,7 +38,7 @@ export default function Pokemon({ location, setLocation, onBackButtonClick }) {
   if (loaded && !pokemon) {
     return (
     <div>
-      <h1>This location doesn't seem to have any pokemon</h1>
+      <h1>This location doesn't seem to have any pokemon 😢</h1>
       <button onClick={onBackButtonClick}>Back</button>
     </div>);
   } else if (!loaded) {
@@ -44,11 +46,14 @@ export default function Pokemon({ location, setLocation, onBackButtonClick }) {
   } else {
     return (
       <>
+        <PokemonChooser />
+        <div className="enemySide">
         <h1>{pokemon.name}</h1>
         <img src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />
         <h3>
           ❤️ {pokemon.stats[0].base_stat} 🗡️ {pokemon.stats[1].base_stat} 🛡️ {pokemon.stats[3].base_stat}
         </h3>
+        </div>
       </>
     );
   }
