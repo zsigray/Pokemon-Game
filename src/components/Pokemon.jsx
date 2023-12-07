@@ -107,7 +107,7 @@ export default function Pokemon({ location, setLocation, onBackButtonClick }) {
               </tr>
               <tr>
                 <td className='pokemon-name'>{pokemon.name}</td>
-                <td className='pokemon-hp'>HP{pokemon.stats[0].base_stat}</td>
+                <td className='pokemon-hp'>HP {pokemon.stats[0].base_stat}</td>
                 <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false, type)} alt="" width={30} height={30} /></td>
               </tr>
             </table>
