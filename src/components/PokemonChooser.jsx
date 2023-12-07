@@ -117,12 +117,7 @@ export default function PokemonChooser({
     );
     
   }
-
-
-setTimeout(()=> onBattleEnd(null), 10000)
-}
-
-    return (
+   return (
         <>
         <div className="ourSide">
         
