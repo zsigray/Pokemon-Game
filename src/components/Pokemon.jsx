@@ -131,7 +131,7 @@ export default function Pokemon({
 
   if (loaded && !pokemon) {
     return (
-      <div>
+      <div className="location">
         <h1>This location doesn't seem to have any pokemon 😢</h1>
         <button onClick={onBackButtonClick}>Back</button>
       </div>
