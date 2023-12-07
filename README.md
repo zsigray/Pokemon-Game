@@ -2,6 +2,10 @@
 
 Welcome to the React Pokemon Card Game! This is a simple web-based game where players can enjoy Pokemon battles and catch different Pokemon cards. The game is built using React, providing an interactive user interface.
 
+## Live Demo
+
+Try out the game live: [React Pokemon Card Game Live Demo](https://crashhash.xyz/pokemon)
+
 ## Getting Started
 
 1. **Clone the Repository:**
