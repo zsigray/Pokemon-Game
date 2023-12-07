@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
-import './pokemon.css';
+import '../pokemon.css';
 
 export default function PokemonChooser({pokemon, onBattleEnd, getTypeClassNameOrImg }){
 
