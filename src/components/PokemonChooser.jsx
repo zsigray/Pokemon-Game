@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from "react";
+import './pokemon.css';
 
-export default function PokemonChooser({pokemon, onBattleEnd }){
+export default function PokemonChooser({pokemon, onBattleEnd, getTypeClassNameOrImg }){
 
    const [fighterPokemon, setFighterPokemon] = useState(null);
    const [usersPokemons, setUsersPokemons] = useState([]);
@@ -87,9 +88,37 @@ setTimeout(()=> onBattleEnd(null), 10000)
         </> :
         (fightBattle(fighterPokemon, pokemon),
         <div className="fighterPokemon">
-                <h1>{fighterPokemon.name}</h1>
-                <img className='fighter' src={fighterPokemon.sprites.other['official-artwork'].front_shiny} alt={fighterPokemon.name} />
-                <h3>❤️ {fighterPokemon.stats[0].base_stat} 🗡️ {fighterPokemon.stats[1].base_stat} 🛡️ {fighterPokemon.stats[3].base_stat}</h3>
+          <div className={getTypeClassNameOrImg(true, fighterPokemon.types[0].type.name)}>
+            <table className='nameheaders'>
+              <tr>
+                <td className='basic' colSpan={3}>Basic Pokemon</td>
+              </tr>
+              <tr>
+                <td className='pokemon-name'>{fighterPokemon.name}</td>
+                <td className='pokemon-hp'>HP{fighterPokemon.stats[0].base_stat}</td>
+                <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false, fighterPokemon.types[0].type.name)} alt="" width={30} height={30} /></td>
+              </tr>
+            </table>
+            <img className='headshot' src={fighterPokemon.sprites.other['official-artwork'].front_shiny} alt={fighterPokemon.name} />
+            <p className='description'>asd. Length: {fighterPokemon.height * 10}CM Weight: {fighterPokemon.weight / 10}KG</p>
+            <div className='infoonly'>
+              <table className='stats'>
+                <tr>
+                  <td><span className='label'>Attack</span> <span className='labeltext'> </span></td>
+                  <td className='damage'>{fighterPokemon.stats[1].base_stat}</td>
+                </tr>
+              </table>
+              <hr />
+              <table className='stats'>
+                <tr>
+                  <td><span className='label'>Defense</span> <span className='labeltext'> </span></td>
+                  <td className='damage'>{fighterPokemon.stats[3].base_stat}</td>
+                </tr>
+              </table>
+            </div>
+            <p className='italicize'>asd</p>
+            <p className='bottomtext'><strong>Illus. Mitsuhiro Arita</strong>  C 1995, 96, 98 Nintendo Creatures, GAMEFREAK C 1999 Wizards.  <strong>58/102 o</strong></p>
+          </div>
         </div>)
         } 
         </div>
