@@ -335,3 +335,7 @@ img.headshot {
 .infoonly {
   padding-bottom: 1vh;
 }
+
+.enemySide {
+  padding-left: 10vw;
+}

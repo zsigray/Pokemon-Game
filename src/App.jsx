@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import LocationListPage from './components/LocationListPage';
 import Pokemon from './components/Pokemon';
-import './App.css';
+import '../App.css';
 
 function App() {
   const [location, setLocation] = useState(null);
@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {location ? (
-        <Pokemon location={location} onBackButtonClick={handleBackButtonClick} />
+        <Pokemon location={location} setLocation={setLocation} onBackButtonClick={handleBackButtonClick} />
       ) : (
         <LocationListPage setLocation={setLocation} />
       )}
