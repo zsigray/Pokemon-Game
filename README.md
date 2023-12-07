@@ -66,6 +66,6 @@ Welcome to the React Pokemon Card Game! This is a simple web-based game where pl
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](MIT_License.md).
 
 Have fun playing the React Pokemon Card Game! If you encounter issues or have suggestions, open an issue or pull request. Happy gaming!
