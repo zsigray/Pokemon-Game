@@ -19,7 +19,7 @@ export default function LocationListPage({ setLocation }) {
     };
     fetchData();
 
-    return () => {
+        return () => {
       raceConditionHandler = false;
     };
   }, []);

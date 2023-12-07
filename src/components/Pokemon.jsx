@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import './pokemon.css';
 import PokemonChooser from './PokemonChooser';
 
-export default function Pokemon({ location, onBackButtonClick }) {
+export default function Pokemon({ location, setLocation, onBackButtonClick }) {
   const [pokemon, setPokemon] = useState(null);
   const [loaded, setLoaded] = useState(false);
   const [pokemonData, setPokemonData] = useState(null);
@@ -43,7 +43,7 @@ export default function Pokemon({ location, onBackButtonClick }) {
     fetchData()
   }, []);
 
-  const getTypeClassNameOrImg = (css) => {
+  const getTypeClassNameOrImg = (css, type) => {
     switch (type) {
       case 'fire':
         return css ? 'nameimageinfo card-background-fire' : 'https://cdn.discordapp.com/attachments/835821286205947924/1181951803831623720/fire_type_symbol_tcg_by_jormxdos_dfgdd9h-fullview.png';
@@ -98,9 +98,9 @@ export default function Pokemon({ location, onBackButtonClick }) {
   } else {
     return (
       <>
-        <PokemonChooser pokemon={pokemon} onBattleEnd={setLocation} />
+        <PokemonChooser pokemon={pokemon} onBattleEnd={setLocation} getTypeClassNameOrImg={getTypeClassNameOrImg}/>
         <div className="enemySide">
-          <div className={getTypeClassNameOrImg(true)}>
+          <div className={getTypeClassNameOrImg(true, type)}>
             <table className='nameheaders'>
               <tr>
                 <td className='basic' colSpan={3}>Basic Pokemon</td>
@@ -108,7 +108,7 @@ export default function Pokemon({ location, onBackButtonClick }) {
               <tr>
                 <td className='pokemon-name'>{pokemon.name}</td>
                 <td className='pokemon-hp'>HP{pokemon.stats[0].base_stat}</td>
-                <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false)} alt="" width={30} height={30} /></td>
+                <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false, type)} alt="" width={30} height={30} /></td>
               </tr>
             </table>
             <img className='headshot' src={pokemon.sprites.other['official-artwork'].front_shiny} alt={pokemon.name} />

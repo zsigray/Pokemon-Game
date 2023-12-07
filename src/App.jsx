@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       {location ? (
-        <Pokemon location={location} setLocation={setLocation} onBackButtonClick={handleBackButtonClick} />
+        <Pokemon location={location} onBackButtonClick={handleBackButtonClick} />
       ) : (
         <LocationListPage setLocation={setLocation} />
       )}
