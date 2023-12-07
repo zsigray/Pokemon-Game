@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
+import '../pokemon.css'
 
 export default function LocationListPage({ setLocation }) {
   const [locations, setLocations] = useState([]);
@@ -38,7 +39,7 @@ export default function LocationListPage({ setLocation }) {
   });
 
   return (
-    <div>
+    <div className="location">
       <h1>Locations</h1>
       {locationList}
     </div>

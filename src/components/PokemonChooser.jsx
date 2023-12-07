@@ -65,63 +65,6 @@ export default function PokemonChooser({
     );
   });
 
-  // ------ FIGHT -----------
-
-/*   function fightBattle(ourPokemon, enemyPokemon) {
-    const updatedURLs = [...usersPokemonsURL];
-    console.log("Battle Begins");
-    const fighters = [ourPokemon, enemyPokemon];
-    const firstAttacker = fighters[Math.floor(Math.random() * 2)];
-    const secondAttacker = fighters.find(
-      (fighter) => fighter !== firstAttacker
-    );
-
-    console.log(`First Attacker: ${firstAttacker.name}`);
-    console.log(`Second Attacker: ${secondAttacker.name}`);
-
-    do {
-      secondAttacker.stats[0].base_stat -=
-        ((((2 / 5 + 2) * firstAttacker.stats[1].base_stat * 60) /
-          secondAttacker.stats[2].base_stat /
-          50 +
-          2) *
-          Math.floor(Math.random() * (255 - 217 + 1) + 217)) /
-        255;
-
-      if (secondAttacker.stats[0].base_stat <= 0) {
-       
-        console.log(`${secondAttacker.name} dead`);
-        if (secondAttacker === enemyPokemon) {
-          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${enemyPokemon.name}`);
-          console.log(`${enemyPokemon.name} added to pokemons`);
-        }
-        onBattleEnd(null);
-        setUsersPokemonsURL(updatedURLs);
-      }
-      firstAttacker.stats[0].base_stat -=
-        ((((2 / 5 + 2) * secondAttacker.stats[1].base_stat * 60) /
-          firstAttacker.stats[2].base_stat /
-          50 +
-          2) *
-          Math.floor(Math.random() * (255 - 217 + 1) + 217)) /
-        255;
-
-      if (firstAttacker.stats[0].base_stat <= 0) {
-        console.log(`${firstAttacker.name} dead`);
-        if (firstAttacker === enemyPokemon) {
-          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${enemyPokemon.name}`);
-          console.log(`${enemyPokemon.name} added to pokemons`);
-        }
-        onBattleEnd(null);
-        setUsersPokemonsURL(updatedURLs);
-      }
-    } while (
-      firstAttacker.stats[0].base_stat > 0 &&
-      secondAttacker.stats[0].base_stat > 0
-    );
-    
-  } */
-
   async function fightBattle(ourPokemon, enemyPokemon) {
     const updatedURLs = [...usersPokemonsURL];
     console.log("Battle Begins");
@@ -166,9 +109,8 @@ export default function PokemonChooser({
     } while (firstAttacker.stats[0].base_stat > 0 && secondAttacker.stats[0].base_stat > 0);
   }
 
- 
 
-    return (
+   return (
         <>
         <div className="ourSide">
         
