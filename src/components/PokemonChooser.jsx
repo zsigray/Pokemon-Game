@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import '../pokemon.css';
 
-
 export default function PokemonChooser({
   pokemon,
   onBattleEnd,
@@ -11,9 +10,14 @@ export default function PokemonChooser({
   usersPokemonsURL,
   setUsersPokemonsURL
 }) {
+
+  // ----- Initialize variables -----
   const [fighterPokemon, setFighterPokemon] = useState(null);
   const [usersPokemons, setUsersPokemons] = useState([]);
   const [pokemonData, setPokemonData] = useState([]);
+
+
+  // ----- Get Pokemon List -----
    
    useEffect(() => {
     let raceConditionHandler = true;
@@ -25,6 +29,7 @@ export default function PokemonChooser({
         const response = await fetch(url);
         const pokemon = await response.json();
         userPokemonList.push(pokemon);
+
         const pokemonMoreData = await fetch(pokemon.species.url);
         const pokemonMoreDataJson = await pokemonMoreData.json();
         userPokemonData.push(pokemonMoreDataJson);
@@ -38,13 +43,10 @@ export default function PokemonChooser({
     return () => {
       raceConditionHandler = false;
     };
-    
   }, [usersPokemonsURL]);
 
-  function chooseFighterPokemon(pokemon) {
-    setFighterPokemon(pokemon);
-  }
 
+  // ----- Display pokemons to choose -----
   const usersPokemonsDisplay = usersPokemons.map((ourPokemon) => {
     return (
       <div className="miniPokemon" key={ourPokemon.name}>
@@ -55,7 +57,7 @@ export default function PokemonChooser({
           width={"100px"}
         />
         
-        <button onClick={() => chooseFighterPokemon(ourPokemon)}>
+        <button onClick={() => setFighterPokemon(ourPokemon)}>
           {" "}
           Fight with {ourPokemon.name}{" "}
         </button>
@@ -63,10 +65,12 @@ export default function PokemonChooser({
     );
   });
 
-  function fightBattle(fighterPokemon, pokemon) {
+  // ------ FIGHT -----------
+
+/*   function fightBattle(ourPokemon, enemyPokemon) {
     const updatedURLs = [...usersPokemonsURL];
     console.log("Battle Begins");
-    const fighters = [fighterPokemon, pokemon];
+    const fighters = [ourPokemon, enemyPokemon];
     const firstAttacker = fighters[Math.floor(Math.random() * 2)];
     const secondAttacker = fighters.find(
       (fighter) => fighter !== firstAttacker
@@ -87,9 +91,9 @@ export default function PokemonChooser({
       if (secondAttacker.stats[0].base_stat <= 0) {
        
         console.log(`${secondAttacker.name} dead`);
-        if (secondAttacker === pokemon) {
-          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
-          console.log(`${pokemon.name} added to pokemons`);
+        if (secondAttacker === enemyPokemon) {
+          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${enemyPokemon.name}`);
+          console.log(`${enemyPokemon.name} added to pokemons`);
         }
         onBattleEnd(null);
         setUsersPokemonsURL(updatedURLs);
@@ -104,9 +108,9 @@ export default function PokemonChooser({
 
       if (firstAttacker.stats[0].base_stat <= 0) {
         console.log(`${firstAttacker.name} dead`);
-        if (firstAttacker === pokemon) {
-          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${pokemon.name}`);
-          console.log(`${pokemon.name} added to pokemons`);
+        if (firstAttacker === enemyPokemon) {
+          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${enemyPokemon.name}`);
+          console.log(`${enemyPokemon.name} added to pokemons`);
         }
         onBattleEnd(null);
         setUsersPokemonsURL(updatedURLs);
@@ -116,11 +120,53 @@ export default function PokemonChooser({
       secondAttacker.stats[0].base_stat > 0
     );
     
+  } */
+
+  async function fightBattle(ourPokemon, enemyPokemon) {
+    const updatedURLs = [...usersPokemonsURL];
+    console.log("Battle Begins");
+  
+    const getRandomAttacker = () => [ourPokemon, enemyPokemon][Math.floor(Math.random() * 2)];
+  
+    const attack = async (attacker, target) => {
+      target.stats[0].base_stat -=
+        ((((2 / 5 + 2) * attacker.stats[1].base_stat * 60) /
+          target.stats[2].base_stat /
+          50 +
+          2) *
+          Math.floor(Math.random() * (255 - 217 + 1) + 217)) /
+        255;
+      console.log(target.name, Math.ceil(target.stats[0].base_stat))
+  
+      if (target.stats[0].base_stat <= 0) {
+        console.log(`${target.name} dead`);
+        if (target === enemyPokemon) {
+          updatedURLs.push(`https://pokeapi.co/api/v2/pokemon/${enemyPokemon.name}`);
+          console.log(`${enemyPokemon.name} added to pokemons`);
+        }
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        onBattleEnd(null);
+        setUsersPokemonsURL(updatedURLs);
+      }
+    };
+  
+    let firstAttacker = getRandomAttacker();
+    let secondAttacker = [ourPokemon, enemyPokemon].find((fighter) => fighter !== firstAttacker);
+  
+    console.log(`First Attacker: ${firstAttacker.name}`);
+    console.log(`Second Attacker: ${secondAttacker.name}`);
+  
+    do {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        attack(firstAttacker, secondAttacker);
+      if (secondAttacker.stats[0].base_stat > 0) {
+        await new Promise((resolve) => setTimeout(resolve, 500));
+        attack(secondAttacker, firstAttacker); 
+      }
+    } while (firstAttacker.stats[0].base_stat > 0 && secondAttacker.stats[0].base_stat > 0);
   }
 
-
-setTimeout(()=> onBattleEnd(null), 10000)
-}
+ 
 
     return (
         <>
