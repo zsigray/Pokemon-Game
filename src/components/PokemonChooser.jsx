@@ -139,6 +139,7 @@ export default function PokemonChooser({
             <div className='infoonly'>
               <table className='stats'>
                 <tr>
+                  <td className="energy"><img src = "https://cdn2.iconfinder.com/data/icons/rpg-fantasy-game-skill-ui/512/game_skill_ui_sword_stab_attack-512.png" width = "20" height = "20"/></td>
                   <td><span className='label'>Attack</span> <span className='labeltext'> </span></td>
                   <td className='damage'>{fighterPokemon.stats[1].base_stat}</td>
                 </tr>
@@ -146,6 +147,7 @@ export default function PokemonChooser({
               <hr />
               <table className='stats'>
                 <tr>
+                  <td className="energy"><img src = "https://cdn-icons-png.flaticon.com/512/81/81137.png" width = "20" height = "20"/></td>
                   <td><span className='label'>Defense</span> <span className='labeltext'> </span></td>
                   <td className='damage'>{fighterPokemon.stats[3].base_stat}</td>
                 </tr>
