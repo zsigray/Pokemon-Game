@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import "./pokemon.css";
+import "../pokemon.css";
 import PokemonChooser from "./PokemonChooser";
 
 export default function Pokemon({
@@ -157,16 +157,9 @@ export default function Pokemon({
                 </td>
               </tr>
               <tr>
-                <td className="pokemon-name">{pokemon.name}</td>
-                <td className="pokemon-hp">HP{pokemon.stats[0].base_stat}</td>
-                <td className="pokemon-type-icon">
-                  <img
-                    src={getTypeClassNameOrImg(false, type)}
-                    alt=""
-                    width={30}
-                    height={30}
-                  />
-                </td>
+                <td className='pokemon-name'>{pokemon.name}</td>
+                <td className='pokemon-hp'>HP {pokemon.stats[0].base_stat}</td>
+                <td className='pokemon-type-icon'><img src={getTypeClassNameOrImg(false, type)} alt="" width={30} height={30} /></td>
               </tr>
             </table>
             <img
