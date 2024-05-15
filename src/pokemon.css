@@ -339,3 +339,16 @@ img.headshot {
 .enemySide {
   padding-left: 10vw;
 }
+
+.pokemonChooser {
+  flex-wrap: wrap;
+}
+.ourSide, .location{
+  background-color: rgba(236, 236, 236, 0.6);
+  border-radius: 25px;
+}
+.location {
+  padding-right: 1vw;
+  padding-left: 1vw;
+  padding-bottom: 1vw;
+}

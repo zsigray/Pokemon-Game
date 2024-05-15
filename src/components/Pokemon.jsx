@@ -131,7 +131,7 @@ export default function Pokemon({
 
   if (loaded && !pokemon) {
     return (
-      <div>
+      <div className="location">
         <h1>This location doesn't seem to have any pokemon 😢</h1>
         <button onClick={onBackButtonClick}>Back</button>
       </div>
@@ -174,9 +174,9 @@ export default function Pokemon({
             <div className="infoonly">
               <table className="stats">
                 <tr>
+                  <td className="energy"><img src = "https://cdn2.iconfinder.com/data/icons/rpg-fantasy-game-skill-ui/512/game_skill_ui_sword_stab_attack-512.png" width = "20" height = "20"/></td>
                   <td>
                     <span className="label">Attack</span>{" "}
-                    <span className="labeltext"> </span>
                   </td>
                   <td className="damage">{pokemon.stats[1].base_stat}</td>
                 </tr>
@@ -184,9 +184,9 @@ export default function Pokemon({
               <hr />
               <table className="stats">
                 <tr>
+                  <td className="energy"><img src = "https://cdn-icons-png.flaticon.com/512/81/81137.png" width = "20" height = "20"/></td>
                   <td>
                     <span className="label">Defense</span>{" "}
-                    <span className="labeltext"> </span>
                   </td>
                   <td className="damage">{pokemon.stats[3].base_stat}</td>
                 </tr>
